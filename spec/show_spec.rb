@@ -4,11 +4,14 @@ describe Show do
   
   describe '.all' do
     it 'returns a list of the shows' do
+      connection = PG.connect(dbname: 'tv_manager_test')
+      connection.exec("INSERT INTO shows (title) VALUES ('Test TV show 1');")
+      connection.exec("INSERT INTO shows (title) VALUES ('Test TV show 2');")
+      connection.exec("INSERT INTO shows (title) VALUES ('Test TV show 3');")
       shows = Show.all
-      p shows
-      expect(shows).to include('The Wire')
-      expect(shows).to include('The Sopranos')
-      expect(shows).to include('Fargo')
+      expect(shows).to include('Test TV show 1')
+      expect(shows).to include('Test TV show 2')
+      expect(shows).to include('Test TV show 3')
     end
   end
 
