@@ -13,7 +13,6 @@ class ShowManager < Sinatra::Base
 
   get '/tv-show-list' do
     @shows = Show.all
-    p @shows
     erb :index
   end
 
