@@ -7,7 +7,7 @@ class TvManager < Sinatra::Base
   end
 
   get '/' do
-    "Hello world"
+    erb :homepage
   end
 
   run! if app_file == $0
