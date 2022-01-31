@@ -27,8 +27,17 @@ class Show
     else
       connection = PG.connect(dbname: 'tv_manager')
     end
-    result = connection.exec("INSERT INTO shows (title) VALUES ($1) RETURNING id, title;", [title])
+    result = connection.exec_params("INSERT INTO shows (title) VALUES ($1) RETURNING id, title;", [title])
     Show.new(id: result[0]['id'] , title: result[0]['title'])
+  end
+
+  def self.delete(id:)
+    if ENV['ENVIRONMENT'] == 'test'
+      connection = PG.connect(dbname: 'tv_manager_test')
+    else
+      connection = PG.connect(dbname: 'tv_manager')
+    end
+    result = connection.exec_params("DELETE FROM shows WHERE id = $1;", [id])
   end
 
 end

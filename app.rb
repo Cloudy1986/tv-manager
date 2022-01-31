@@ -7,6 +7,8 @@ class ShowManager < Sinatra::Base
     register Sinatra::Reloader
   end
 
+  enable :sessions, :method_override
+
   get '/' do
     erb :homepage
   end
@@ -22,6 +24,11 @@ class ShowManager < Sinatra::Base
 
   post '/tv-show-list' do
     Show.create(title: params['title'])
+    redirect '/tv-show-list'
+  end
+
+  delete '/tv-show-list/:id' do
+    Show.delete(id: params['id'])
     redirect '/tv-show-list'
   end
 

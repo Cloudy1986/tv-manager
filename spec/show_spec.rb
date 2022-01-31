@@ -32,4 +32,12 @@ describe Show do
     end
   end
 
+  describe '.delete' do
+    it 'deletes a show from the database' do
+      show = Show.create(title: 'Test TV show 5')
+      Show.delete(id: show.id)
+      expect(Show.all.length).to eq 0
+    end
+  end
+
 end
