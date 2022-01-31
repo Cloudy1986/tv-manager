@@ -16,5 +16,14 @@ class ShowManager < Sinatra::Base
     erb :index
   end
 
+  get '/tv-show-list/new' do
+    erb :new
+  end
+
+  post '/tv-show-list' do
+    Show.create(title: params['title'])
+    redirect '/tv-show-list'
+  end
+
   run! if app_file == $0
 end
