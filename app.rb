@@ -32,5 +32,9 @@ class ShowManager < Sinatra::Base
     redirect '/tv-show-list'
   end
 
+  get '/tv-show-list/:id/edit' do
+    "Edit Movie"
+  end
+
   run! if app_file == $0
 end
