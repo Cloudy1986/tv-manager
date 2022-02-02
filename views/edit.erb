@@ -1,3 +1,7 @@
-<h1>Edit Movie</h1>
+<h1>Edit TV Show</h1>
 
-<%= @movie.title %>
+<form action="/tv-show-list/<%= @show.id %>/edit" method="post">
+  <input type="hidden" name="_method" value="PATCH">
+  <input type="text" name="title" placeholder="<%= @show.title %>">
+  <input type="submit" value="Submit">
+</form>

@@ -33,8 +33,14 @@ class ShowManager < Sinatra::Base
   end
 
   get '/tv-show-list/:id/edit' do
-    @movie = Show.find(id: params['id'])
+    @show = Show.find(id: params['id'])
     erb :edit
+  end
+
+  patch '/tv-show-list/:id/edit' do
+    p params['id']
+    p params['title']
+    redirect '/tv-show-list'
   end
 
   run! if app_file == $0
