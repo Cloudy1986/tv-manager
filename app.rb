@@ -33,6 +33,7 @@ class ShowManager < Sinatra::Base
   end
 
   get '/tv-show-list/:id/edit' do
+    @movie = Show.find(id: params['id'])
     erb :edit
   end
 

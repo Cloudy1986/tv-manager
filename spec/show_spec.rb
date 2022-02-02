@@ -40,4 +40,16 @@ describe Show do
     end
   end
 
+  describe '.find' do
+    it 'returns the correct show from the database' do
+      show = Show.create(title: 'Test TV Show 6')
+      returned_show = Show.find(id: show.id)
+
+      expect(returned_show).to be_a Show
+      expect(returned_show.id).to eq show.id
+      expect(returned_show.title).to eq show.title
+
+    end
+  end
+
 end
