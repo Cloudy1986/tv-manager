@@ -33,7 +33,7 @@ class ShowManager < Sinatra::Base
   end
 
   get '/tv-show-list/:id/edit' do
-    "Edit Movie"
+    erb :edit
   end
 
   run! if app_file == $0
