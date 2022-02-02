@@ -50,4 +50,14 @@ class Show
     Show.new(id: result[0]['id'], title: result[0]['title'])
   end
 
+  def self.update(id:, title:)
+    if ENV['ENVIRONMENT'] == 'test'
+      connection = PG.connect(dbname: 'tv_manager_test')
+    else
+      connection = PG.connect(dbname: 'tv_manager')
+    end
+    result = connection.exec_params("UPDATE shows SET title = $1 WHERE id = $2 RETURNING id, title;", [title, id])
+    Show.new(id: result[0]['id'], title: result[0]['title'])
+  end
+
 end

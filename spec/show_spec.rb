@@ -52,4 +52,15 @@ describe Show do
     end
   end
 
+  describe '.update' do
+    it 'updates the show title in the database' do
+      show = Show.create(title: 'Test TV Show 7')
+      updated_show = Show.update(id: show.id, title: 'Test TV Show 8')
+
+      expect(updated_show).to be_a Show
+      expect(updated_show.id).to eq show.id
+      expect(updated_show.title).to eq 'Test TV Show 8'
+    end
+  end
+
 end

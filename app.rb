@@ -38,8 +38,7 @@ class ShowManager < Sinatra::Base
   end
 
   patch '/tv-show-list/:id/edit' do
-    p params['id']
-    p params['title']
+    Show.update(id: params['id'], title: params["title"])
     redirect '/tv-show-list'
   end
 
